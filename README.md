@@ -157,7 +157,7 @@ Linked to the `_COMPUTERS` OU. Blocks all removable storage access on
 domain-joined machines via Computer Configuration.
 
 **Note:** The default `Computers` container in ADUC cannot have GPOs 
-linked to it — a dedicated `_COMPUTERS` OU was created and the client 
+linked to it, a dedicated `_COMPUTERS` OU was created and the client 
 machine was moved into it before the GPO could be applied.
 
 ![USB Blocked](screenshots/client/usb-blocked.png)
@@ -173,7 +173,8 @@ machine, confirming all GPOs are applied correctly.
 gpresult /h C:\gpresult.html /user:MYDOMAIN\username
 ```
 
-![GPResult Report](screenshots/client/gpresult-report.png)
+![GPResult Report](screenshots/client/gpresult-user-report.png)
+![GPResult Report](screenshots/client/gpresult-computer-reports.png)
 
 ---
 
@@ -191,11 +192,11 @@ gpresult /h C:\gpresult.html /user:MYDOMAIN\username
 ## 💡 Key Lessons Learned
 
 - GPO precedence follows **LSDOU** order (Local → Site → Domain → OU). 
-  A lower link order number means higher precedence — this caused a real 
+  A lower link order number means higher precedence, this caused a real 
   conflict that had to be diagnosed and fixed
 - The default **Computers container** is not a true OU and cannot have 
   GPOs linked to it directly
 - Password policies must be linked at the **domain level** to affect user 
-  account passwords — OU-level password GPOs do not work for this
+  account passwords, OU-level password GPOs do not work for this
 - The `redircmp` command redirects new computer objects to a custom OU 
   automatically instead of landing in the default Computers container
